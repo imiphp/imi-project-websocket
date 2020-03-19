@@ -18,11 +18,11 @@ class HandShakeController extends HttpController
     /**
      * 
      * @Action
-     * @Route("/")
+     * @Route("/ws")
      * @WSConfig(parserClass=\Imi\Server\DataParser\JsonObjectParser::class)
      * @return void
      */
-    public function index()
+    public function ws()
     {
         // 握手处理，什么都不做，框架会帮你做好
         

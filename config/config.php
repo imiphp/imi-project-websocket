@@ -20,11 +20,12 @@ return [
 
     // 主服务器配置
     'mainServer'    =>    [
-        'namespace'    =>    'ImiApp\WebSocketServer',
-        'type'        =>    Imi\Server\Type::WEBSOCKET,
-        'host'        =>    '127.0.0.1',
-        'port'        =>    8081,
-        'configs'    =>    [
+        'namespace' =>  'ImiApp\WebSocketServer',
+        'type'      =>  Imi\Server\Type::WEBSOCKET,
+        'host'      =>  '127.0.0.1',
+        'port'      =>  8081,
+        'mode'      =>  SWOOLE_BASE,
+        'configs'   =>    [
             // 'worker_num'        =>  8,
             // 'task_worker_num'   =>  16,
         ],

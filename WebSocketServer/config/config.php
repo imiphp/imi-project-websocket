@@ -26,6 +26,7 @@ return [
             'middlewares'    =>    [
                 \ImiApp\WebSocketServer\Middleware\PoweredBy::class,
                 \Imi\Server\Session\Middleware\HttpSessionMiddleware::class,
+                \Imi\Server\WebSocket\Middleware\HandShakeMiddleware::class,
                 \Imi\Server\Http\Middleware\RouteMiddleware::class,
             ],
         ],
@@ -49,15 +50,11 @@ return [
         'ServerGroup'   =>  [
             'status'        =>  false,
         ],
-        'HttpDispatcher'    =>    [
-            'middlewares'    =>    [
-                \Imi\Server\WebSocket\Middleware\HandShakeMiddleware::class,
-                \Imi\Server\Http\Middleware\RouteMiddleware::class,
-            ],
+        'ConnectContextStore'   =>  [
+            'handlerClass'  =>  \Imi\Server\ConnectContext\StoreHandler\Local::class,
         ],
-        'ConnectContextRedis'    =>    [
-            'redisPool' =>   'redis',
-            'lockId'    =>   'redis',
+        'ConnectContextLocal'    =>    [
+            'lockId'    =>  'redis',
         ],
     ],
 ];

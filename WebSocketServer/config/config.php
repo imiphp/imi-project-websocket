@@ -46,9 +46,6 @@ return [
         'GroupRedis'    =>    [
             'redisPool'    =>    'redis',
         ],
-        'ServerGroup'   =>  [
-            'status'        =>  false,
-        ],
         'HttpDispatcher'    =>    [
             'middlewares'    =>    [
                 \Imi\Server\WebSocket\Middleware\HandShakeMiddleware::class,

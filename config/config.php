@@ -1,11 +1,12 @@
 <?php
+
 return [
     // 项目根命名空间
     'namespace'    =>    'ImiApp',
 
     // 配置文件
     'configs'    =>    [
-        'beans'        =>    __DIR__ . '/beans.php',
+        'beans'        =>    __DIR__.'/beans.php',
     ],
 
     // 扫描目录
@@ -22,7 +23,7 @@ return [
     'mainServer'    =>    [
         'namespace' =>  'ImiApp\WebSocketServer',
         'type'      =>  Imi\Server\Type::WEBSOCKET,
-        'host'      =>  '127.0.0.1',
+        'host'      =>  '0.0.0.0',
         'port'      =>  8081,
         'mode'      =>  SWOOLE_BASE,
         'configs'   =>    [
@@ -36,7 +37,7 @@ return [
         // 'SubServerName'   =>  [
         //     'namespace'    =>    'ImiApp\XXXServer',
         //     'type'        =>    Imi\Server\Type::HTTP,
-        //     'host'        =>    '127.0.0.1',
+        //     'host'        =>    '0.0.0.0',
         //     'port'        =>    13005,
         // ]
     ],
@@ -95,7 +96,7 @@ return [
                     'host'      => '127.0.0.1',
                     'port'      => 6379,
                     'password'  => null,
-                ]
+                ],
             ],
             'async'    =>    [
                 'pool'    =>    [
@@ -109,7 +110,7 @@ return [
                     'host'      => '127.0.0.1',
                     'port'      => 6379,
                     'password'  => null,
-                ]
+                ],
             ],
         ],
     ],
@@ -146,7 +147,7 @@ return [
                     'poolName'  =>  'redis',
                 ],
             ],
-        ]
+        ],
     ],
 
     // atmoic 配置

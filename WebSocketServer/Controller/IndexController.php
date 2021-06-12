@@ -20,7 +20,7 @@ class IndexController extends WebSocketController
      * @WSAction
      * @WSRoute({"action"="send"})
      * @param 
-     * @return void
+     * @return array
      */
     public function send($data)
     {

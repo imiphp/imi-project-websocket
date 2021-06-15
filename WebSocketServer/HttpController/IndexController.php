@@ -15,7 +15,7 @@ class IndexController extends HttpController
      * @Action
      * @Route("/")
      *
-     * @return void
+     * @return array
      */
     public function index()
     {
@@ -27,7 +27,7 @@ class IndexController extends HttpController
     /**
      * @Action
      *
-     * @return void
+     * @return array
      */
     public function api()
     {

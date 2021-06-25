@@ -49,15 +49,15 @@ return [
             ],
         ],
         // 本地模式
-        'ConnectionContextStore'   =>  [
-            'handlerClass'  =>  \Imi\Server\ConnectionContext\StoreHandler\Local::class,
-        ],
-        'ConnectionContextLocal'    =>    [
-            'lockId'    =>  null, // 非必设，可以用锁来防止数据错乱问题
-        ],
-        'ServerGroup' => [
-            'groupHandler' => 'GroupLocal',
-        ],
+        // 'ConnectionContextStore'   =>  [
+        //     'handlerClass'  =>  \Imi\Server\ConnectionContext\StoreHandler\Local::class,
+        // ],
+        // 'ConnectionContextLocal'    =>    [
+        //     'lockId'    =>  null, // 非必设，可以用锁来防止数据错乱问题
+        // ],
+        // 'ServerGroup' => [
+        //     'groupHandler' => 'GroupLocal',
+        // ],
 
         // // Redis 模式
         // 'ConnectionContextStore'   =>  [
@@ -78,11 +78,11 @@ return [
         // ],
 
         // 网关模式
-        // 'ConnectionContextStore'   => [
-        //     'handlerClass'  => 'ConnectionContextGateway',
-        // ],
-        // 'ServerGroup' => [
-        //     'groupHandler' => 'GroupGateway',
-        // ],
+        'ConnectionContextStore'   => [
+            'handlerClass'  => 'ConnectionContextGateway',
+        ],
+        'ServerGroup' => [
+            'groupHandler' => 'GroupGateway',
+        ],
     ],
 ];

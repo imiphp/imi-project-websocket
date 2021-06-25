@@ -24,20 +24,20 @@ return [
     // 主服务器配置
     'mainServer'    =>    'swoole' === $mode ? [
         'namespace' =>  'ImiApp\WebSocketServer',
-        'type'      =>  Imi\Swoole\Server\Type::WEBSOCKET,
-        // 'type'      => \Imi\WorkermanGateway\Swoole\Server\Type::BUSINESS_WEBSOCKET, // workerman gateway 模式 Worker
-        'host'      =>  '0.0.0.0',
-        'port'      =>  8081,
+        // 'type'      =>  Imi\Swoole\Server\Type::WEBSOCKET,
+        'type'      => \Imi\WorkermanGateway\Swoole\Server\Type::BUSINESS_WEBSOCKET, // workerman gateway 模式 Worker
+        // 'host'      =>  '0.0.0.0',
+        // 'port'      =>  8081,
         'mode'      =>  SWOOLE_BASE,
         'configs'   =>    [
             // 'worker_num'        =>  8,
             // 'task_worker_num'   =>  16,
         ],
         'beans' => [
-            'ServerUtil' => \Imi\Swoole\Server\Util\LocalServerUtil::class,
+            // 'ServerUtil' => \Imi\Swoole\Server\Util\LocalServerUtil::class,
             // 'ServerUtil' => \Imi\Swoole\Server\Util\LocalServerUtil::class,
             // 'ServerUtil' => 'RedisServerUtil',
-            // 'ServerUtil' => 'SwooleGatewayServerUtil',
+            'ServerUtil' => 'SwooleGatewayServerUtil',
         ],
         // workerman gateway 模式
         'workermanGateway' => [
@@ -70,9 +70,9 @@ return [
                 'count' => 1,
             ],
             'beans' => [
-                'ServerUtil' => \Imi\Workerman\Server\Util\LocalServerUtil::class,
+                // 'ServerUtil' => \Imi\Workerman\Server\Util\LocalServerUtil::class,
                 // 'ServerUtil' => 'ChannelServerUtil',
-                // 'ServerUtil' => 'WorkermanGatewayServerUtil',
+                'ServerUtil' => 'WorkermanGatewayServerUtil',
             ],
         ],
         // // Workerman Gateway 模式请注释 websocket
@@ -85,7 +85,6 @@ return [
             'beans' => [
                 'ServerUtil' => \Imi\Workerman\Server\Util\LocalServerUtil::class,
                 // 'ServerUtil' => 'ChannelServerUtil',
-                // 'ServerUtil' => 'WorkermanGatewayServerUtil',
             ],
             // 数据处理器
             'dataParser'    =>    Imi\Server\DataParser\JsonObjectParser::class,
@@ -99,43 +98,48 @@ return [
         //     ],
         // ],
         // 以下是 Workerman Gateway 模式需要
-        // 'register' => [
-        //     'namespace'   => 'Imi\WorkermanGateway\Test\AppServer\Register',
-        //     'type'        => Imi\WorkermanGateway\Workerman\Server\Type::REGISTER,
-        //     'host'        => '127.0.0.1',
-        //     'port'        => 13004,
-        //     'configs'     => [
-        //     ],
-        // ],
-        // 'gateway' => [
-        //     'namespace'   => 'Imi\WorkermanGateway\Test\AppServer\Gateway',
-        //     'type'        => Imi\WorkermanGateway\Workerman\Server\Type::GATEWAY,
-        //     'socketName'  => 'websocket://0.0.0.0:8081', // 网关监听的地址
-        //     'configs'     => [
-        //         'lanIp'           => '127.0.0.1',
-        //         'startPort'       => 12900,
-        //         'registerAddress' => '127.0.0.1:13004',
-        //     ],
-        // ],
+        'register' => [
+            'namespace'   => 'Imi\WorkermanGateway\Test\AppServer\Register',
+            'type'        => Imi\WorkermanGateway\Workerman\Server\Type::REGISTER,
+            'host'        => '127.0.0.1',
+            'port'        => 13004,
+            'configs'     => [
+            ],
+        ],
+        'gateway' => [
+            'namespace'   => 'Imi\WorkermanGateway\Test\AppServer\Gateway',
+            'type'        => Imi\WorkermanGateway\Workerman\Server\Type::GATEWAY,
+            'socketName'  => 'websocket://0.0.0.0:8081', // 网关监听的地址
+            'configs'     => [
+                'lanIp'           => '127.0.0.1',
+                'startPort'       => 12900,
+                'registerAddress' => '127.0.0.1:13004',
+            ],
+        ],
         // workerman gateway 模式 Worker
-        // 'websocketWorker' => [
-        //     'namespace'   => 'ImiApp\WebSocketServer',
-        //     'type'        => Imi\WorkermanGateway\Workerman\Server\Type::BUSINESS_WEBSOCKET,
-        //     'shareWorker' => '\\' === \DIRECTORY_SEPARATOR ? 'http' : null,
-        //     'configs'     => [
-        //         'registerAddress' => '127.0.0.1:13004',
-        //         'count'           => 2,
-        //     ],
-        // ],
+        'websocketWorker' => [
+            'namespace'   => 'ImiApp\WebSocketServer',
+            'type'        => Imi\WorkermanGateway\Workerman\Server\Type::BUSINESS_WEBSOCKET,
+            'shareWorker' => '\\' === \DIRECTORY_SEPARATOR ? 'http' : null,
+            'configs'     => [
+                'registerAddress' => '127.0.0.1:13004',
+                'count'           => 2,
+            ],
+            'beans' => [
+                // 'ServerUtil' => \Imi\Workerman\Server\Util\LocalServerUtil::class,
+                // 'ServerUtil' => 'ChannelServerUtil',
+                'ServerUtil' => 'WorkermanGatewayServerUtil',
+            ],
+        ],
     ] : [],
 
-    // 'workerman' => [
-    //     // 多进程通讯组件配置
-    //     'channel' => [
-    //         'host' => '127.0.0.1',
-    //         'port' => 13005,
-    //     ],
-    // ],
+    'workerman' => [
+        // 多进程通讯组件配置
+        // 'channel' => [
+        //     'host' => '127.0.0.1',
+        //     'port' => 13005,
+        // ],
+    ],
 
     // 连接池配置
     'pools'    =>    [

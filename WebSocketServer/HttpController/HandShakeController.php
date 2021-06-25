@@ -1,22 +1,22 @@
 <?php
+
 namespace ImiApp\WebSocketServer\HttpController;
 
-use Imi\Controller\HttpController;
+use Imi\Server\Http\Controller\HttpController;
+use Imi\Server\Http\Route\Annotation\Action;
+use Imi\Server\Http\Route\Annotation\Controller;
+use Imi\Server\Http\Route\Annotation\Route;
 use Imi\Server\View\Annotation\View;
-use Imi\Server\Route\Annotation\Route;
-use Imi\Server\Route\Annotation\Action;
-use Imi\Server\Route\Annotation\Controller;
-use Imi\Server\Route\Annotation\WebSocket\WSConfig;
+use Imi\Server\WebSocket\Route\Annotation\WSConfig;
 
 /**
- * 测试
+ * 测试.
  * @Controller
  * @View(renderType="html")
  */
 class HandShakeController extends HttpController
 {
     /**
-     * 
      * @Action
      * @Route("/ws")
      * @WSConfig(parserClass=\Imi\Server\DataParser\JsonObjectParser::class)
@@ -25,7 +25,5 @@ class HandShakeController extends HttpController
     public function ws()
     {
         // 握手处理，什么都不做，框架会帮你做好
-        
     }
-    
 }

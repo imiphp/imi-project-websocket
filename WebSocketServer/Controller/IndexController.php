@@ -1,35 +1,36 @@
 <?php
+
 namespace ImiApp\WebSocketServer\Controller;
 
-use Imi\ConnectContext;
-use Imi\Controller\WebSocketController;
-use Imi\Server\Route\Annotation\WebSocket\WSRoute;
-use Imi\Server\Route\Annotation\WebSocket\WSAction;
-use Imi\Server\Route\Annotation\WebSocket\WSController;
-use Imi\Server\Route\Annotation\WebSocket\WSMiddleware;
+use Imi\App;
+use Imi\Server\WebSocket\Controller\WebSocketController;
+use Imi\Server\WebSocket\Route\Annotation\WSAction;
+use Imi\Server\WebSocket\Route\Annotation\WSController;
+use Imi\Server\WebSocket\Route\Annotation\WSRoute;
 
 /**
- * 数据收发测试
+ * 数据收发测试.
  * @WSController
  */
 class IndexController extends WebSocketController
 {
     /**
-     * 发送消息
+     * 发送消息.
      *
      * @WSAction
      * @WSRoute({"action"="send"})
-     * @param 
+     * @param
      * @return array
      */
     public function send($data)
     {
-        $clientInfo = $this->server->getSwooleServer()->getClientInfo($this->frame->getFd());
-        $message = '[' . ($clientInfo['remote_ip'] ?? '') . ':' . ($clientInfo['remote_port'] ?? '') . ']: ' . $data->message;
+        $address = $this->frame->getClientAddress();
+        $message = '['.$address->getAddress().':'.$address->getPort().']: '.$data->message;
+
         return [
-            'success'   =>  true,
-            'data'      =>  $message,
+            'success' => true,
+            'data'    => $message,
+            'mode'    => App::getApp()->getType(),
         ];
     }
-
 }

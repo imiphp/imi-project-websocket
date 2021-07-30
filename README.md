@@ -20,7 +20,11 @@ Http:<http://127.0.0.1:8081/>、<http://127.0.0.1:8081/api>
 
 ### 方法二
 
-* `composer create-project imiphp/project-websocket 2.0.x-dev`
+* `composer create-project imiphp/project-websocket:2.0.x-dev`
+
+## Swoole
+
+为 Windows 系统用户兼容考虑，默认没有引入 Swoole 组件，如有需要请手动引入：`composer require imiphp/imi-swoole:2.0.x-dev`
 
 ## 启动命令
 

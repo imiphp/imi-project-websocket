@@ -5,7 +5,6 @@
     "require": {
         "php": ">=7.4",
         "imiphp/imi": " 2.0.x-dev",
-        "imiphp/imi-swoole": " 2.0.x-dev",
         "imiphp/imi-workerman": " 2.0.x-dev",
         "imiphp/imi-workerman-gateway": " 2.0.x-dev"
     },

@@ -149,7 +149,7 @@ return [
                 'class'        => \Imi\Swoole\Db\Pool\CoroutineDbPool::class,
                 'config'       => [
                     'maxResources'    => 10,
-                    'minResources'    => 1,
+                    'minResources'    => 0,
                 ],
             ],
             'resource'    => [
@@ -166,7 +166,7 @@ return [
                 'class'        => \Imi\Swoole\Redis\Pool\CoroutineRedisPool::class,
                 'config'       => [
                     'maxResources'    => 10,
-                    'minResources'    => 1,
+                    'minResources'    => 0,
                 ],
             ],
             'resource'    => [

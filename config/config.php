@@ -2,6 +2,8 @@
 
 use Imi\App;
 
+use function Imi\env;
+
 $mode = App::isInited() ? App::getApp()->getType() : null;
 
 return [
@@ -41,6 +43,8 @@ return [
         ],
         // workerman gateway 模式
         'workermanGateway' => [
+            // worker 名称，在不同的 worker 实例中必须不同，一般推荐环境变量来修改
+            'workerName' => env('IMI_WORKER_NAME', 'websocketWorker'),
             'registerAddress'      => '127.0.0.1:13004',
             'worker_coroutine_num' => swoole_cpu_num(),
             'channel'              => [
@@ -118,7 +122,8 @@ return [
         //     ],
         // ],
         // workerman gateway 模式 Worker
-        // 'websocketWorker' => [
+        // worker 名称 websocketWorker，在不同的 worker 实例中必须不同，一般推荐环境变量来修改
+        // env('IMI_WORKER_NAME', 'websocketWorker') => [
         //     'namespace'   => 'ImiApp\WebSocketServer',
         //     'type'        => Imi\WorkermanGateway\Workerman\Server\Type::BUSINESS_WEBSOCKET,
         //     'shareWorker' => '\\' === \DIRECTORY_SEPARATOR ? 'http' : null,

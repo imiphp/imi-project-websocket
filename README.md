@@ -46,6 +46,13 @@ Swoole Worker：`vendor/bin/imi-swoole swoole/start`
 
 Workerman Worker：`vendor/bin/imi-workerman workerman/start --name websocketWorker`
 
+指定 worker 名称：(多个 worker 实例需要不一样的名字)
+
+```shell
+IMI_WORKER_NAME=xxx vendor/bin/imi-swoole swoole/start
+IMI_WORKER_NAME=xxx vendor/bin/imi-workerman workerman/start --name websocketWorker
+```
+
 > 切换环境运行前建议删除 `.runtime/imi-runtime` 目录：`rm -rf .runtime/imi-runtime`
 
 > Swoole 网关模式需要依赖 Workerman 启动 register、gateway，其它服务器配置先注释；运行时需要先 workerman 启动命令，再运行 swoole 启动命令

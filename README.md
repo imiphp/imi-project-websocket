@@ -50,7 +50,7 @@ Workerman Worker：`vendor/bin/imi-workerman workerman/start --name websocketWor
 
 ```shell
 IMI_WORKER_NAME=xxx vendor/bin/imi-swoole swoole/start
-IMI_WORKER_NAME=xxx vendor/bin/imi-workerman workerman/start --name websocketWorker
+IMI_WORKER_NAME=xxx vendor/bin/imi-workerman workerman/start --name xxx
 ```
 
 > 切换环境运行前建议删除 `.runtime/imi-runtime` 目录：`rm -rf .runtime/imi-runtime`

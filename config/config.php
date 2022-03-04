@@ -1,6 +1,7 @@
 <?php
 
 use Imi\App;
+use Imi\AppContexts;
 
 use function Imi\env;
 
@@ -248,7 +249,7 @@ return [
                     [
                         'class'     => \Monolog\Handler\RotatingFileHandler::class,
                         'construct' => [
-                            'filename' => dirname(__DIR__).'/.runtime/logs/log.log',
+                            'filename' => App::get(AppContexts::APP_PATH_PHYSICS) . '/.runtime/logs/log.log',
                         ],
                         'formatter' => [
                             'class'     => \Monolog\Formatter\LineFormatter::class,

@@ -1,6 +1,8 @@
 <?php
 
-namespace ImiApp\WebSocketServer\HttpController;
+declare(strict_types=1);
+
+namespace ImiApp\Module\Test\HttpController;
 
 use Imi\Server\Http\Controller\HttpController;
 use Imi\Server\Http\Route\Annotation\Action;
@@ -11,6 +13,7 @@ use Imi\Server\WebSocket\Route\Annotation\WSConfig;
 
 /**
  * 测试.
+ *
  * @Controller
  * @View(renderType="html")
  */
@@ -20,6 +23,7 @@ class HandShakeController extends HttpController
      * @Action
      * @Route("/ws")
      * @WSConfig(parserClass=\Imi\Server\DataParser\JsonObjectParser::class)
+     *
      * @return void
      */
     public function ws()

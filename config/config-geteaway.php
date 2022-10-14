@@ -1,7 +1,8 @@
 <?php
 
-use Imi\App;
+declare(strict_types=1);
 
+use Imi\App;
 use Imi\AppContexts;
 use function Imi\env;
 
@@ -9,11 +10,11 @@ $mode = App::isInited() ? App::getApp()->getType() : null;
 
 return [
     // 项目根命名空间
-    'namespace'    =>    'ImiApp',
+    'namespace'    => 'ImiApp',
 
     // 配置文件
-    'configs'    =>    [
-        'beans'        =>    __DIR__.'/beans.php',
+    'configs'    => [
+        'beans'        => __DIR__ . '/beans.php',
     ],
 
     // 'ignoreNamespace'   => [
@@ -21,18 +22,18 @@ return [
     // ],
 
     // 组件命名空间
-    'components'    =>  [
+    'components'    => [
     ],
 
     // 主服务器配置
-    'mainServer'    =>    'swoole' === $mode ? [
-        'namespace' =>  'ImiApp\WebSocketServer',
+    'mainServer'    => 'swoole' === $mode ? [
+        'namespace' => 'ImiApp\WebSocketServer',
         // 'type'      =>  Imi\Swoole\Server\Type::WEBSOCKET,
         'type'      => \Imi\WorkermanGateway\Swoole\Server\Type::BUSINESS_WEBSOCKET, // workerman gateway 模式 Worker
         // 'host'      =>  '0.0.0.0',
         // 'port'      =>  8081,
-        'mode'      =>  SWOOLE_BASE,
-        'configs'   =>    [
+        'mode'      => \SWOOLE_BASE,
+        'configs'   => [
             // 'worker_num'        =>  8,
             // 'task_worker_num'   =>  16,
         ],
@@ -45,7 +46,7 @@ return [
         // workerman gateway 模式
         'workermanGateway' => [
             // worker 名称，在不同的 worker 实例中必须不同，一般推荐环境变量来修改
-            'workerName' => env('IMI_WORKER_NAME', 'websocketWorker'),
+            'workerName'           => env('IMI_WORKER_NAME', 'websocketWorker'),
             'registerAddress'      => '127.0.0.1:13004',
             'worker_coroutine_num' => swoole_cpu_num(),
             'channel'              => [
@@ -55,7 +56,7 @@ return [
     ] : [],
 
     // 子服务器（端口监听）配置
-    'subServers'        =>    'swoole' === $mode ? [
+    'subServers'        => 'swoole' === $mode ? [
         // 'SubServerName'   =>  [
         //     'namespace'    =>    'ImiApp\XXXServer',
         //     'type'        =>    Imi\Server\Type::HTTP,
@@ -87,12 +88,12 @@ return [
             'host'        => '0.0.0.0',
             'port'        => 8081,
             'shareWorker' => 'http',
-            'beans' => [
+            'beans'       => [
                 'ServerUtil' => \Imi\Workerman\Server\Util\LocalServerUtil::class,
                 // 'ServerUtil' => 'ChannelServerUtil',
             ],
             // 数据处理器
-            'dataParser'    =>    Imi\Server\DataParser\JsonObjectParser::class,
+            'dataParser'    => Imi\Server\DataParser\JsonObjectParser::class,
         ],
         // 'channel' => [
         //     'namespace'   => '',
@@ -148,10 +149,11 @@ return [
     ],
 
     // 连接池配置
-    'pools'    =>    [
+    'pools'    => [
         // 主数据库
         'maindb'    => [
             'pool'    => [
+                // @phpstan-ignore-next-line
                 'class'        => \Imi\Swoole\Db\Pool\CoroutineDbPool::class,
                 'config'       => [
                     'maxResources'    => 10,
@@ -169,6 +171,7 @@ return [
         ],
         'redis'    => [
             'pool'    => [
+                // @phpstan-ignore-next-line
                 'class'        => \Imi\Swoole\Redis\Pool\CoroutineRedisPool::class,
                 'config'       => [
                     'maxResources'    => 10,
@@ -184,18 +187,18 @@ return [
     ],
 
     // 数据库配置
-    'db'    =>    [
+    'db'    => [
         // 数默认连接池名
-        'defaultPool'    =>    'maindb',
+        'defaultPool'    => 'maindb',
         // FPM、Workerman 下用
         'connections'   => [
             'maindb' => [
-                'host' => '127.0.0.1',
+                'host'        => '127.0.0.1',
                 'port'        => 3306,
-                'username' => 'root',
-                'password' => 'root',
-                'database' => 'mysql',
-                'charset'  => 'utf8mb4',
+                'username'    => 'root',
+                'password'    => 'root',
+                'database'    => 'mysql',
+                'charset'     => 'utf8mb4',
                 // 'port'    => '3306',
                 // 'timeout' => '建立连接超时时间',
                 // 'charset' => '',
@@ -215,20 +218,20 @@ return [
     ],
 
     // redis 配置
-    'redis' =>  [
+    'redis' => [
         // 数默认连接池名
-        'defaultPool'   =>  'redis',
+        'defaultPool'   => 'redis',
         // FPM、Workerman 下用
         'connections'   => [
             'redis' => [
-                'host'	=>	'127.0.0.1',
-                'port'	=>	6379,
+                'host'	 => '127.0.0.1',
+                'port'	 => 6379,
                 // 是否自动序列化变量
-                'serialize'	=>	true,
+                'serialize'	 => true,
                 // 密码
-                'password'	=>	null,
+                'password'	 => null,
                 // 第几个库
-                'db'	=>	0,
+                'db'	 => 0,
             ],
         ],
     ],

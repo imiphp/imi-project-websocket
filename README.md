@@ -1,12 +1,20 @@
 # 说明
 
-imi 框架：https://www.imiphp.com
+这是一个 imi WebSocket 项目开发骨架项目，你可以基于这个项目来开发你的项目。
+
+imi 框架：<https://www.imiphp.com>
+
+imi 文档：<https://doc.imiphp.com>
+
+---
 
 这是一个 WebSocket、Http 共存服务的示例
 
-WebSocket:`ws://127.0.0.1:8081/ws`
+WebSocket 连接地址:`ws://127.0.0.1:8081/ws`
 
-Http:<http://127.0.0.1:8081/>、<http://127.0.0.1:8081/api>
+Swoole 支持 WebSocket+Http 共享端口，Http 测试访问地址:<http://127.0.0.1:8081/>、<http://127.0.0.1:8081/api>
+
+Workerman Http 测试访问地址:<http://127.0.0.1:8080/>、<http://127.0.0.1:8080/api>
 
 `test-html/index.html` 文件可以连接 WebSocket 进行调试
 
@@ -20,21 +28,21 @@ Http:<http://127.0.0.1:8081/>、<http://127.0.0.1:8081/api>
 
 **普通启动：**
 
-Swoole：`vendor/bin/imi-swoole swoole/start`
+**Swoole：**`vendor/bin/imi-swoole swoole/start`
 
-Workerman：`vendor/bin/imi-workerman workerman/start`
+**Workerman：**`vendor/bin/imi-workerman workerman/start`
 
 **网关环境启动：**
 
-配置文件一键切换网关模式：`mv config/config.php config/config.php.bak && mv config/config-geteaway.php config/config.php && mv WebSocketServer/config/config.php WebSocketServer/config/config.php.bak && mv WebSocketServer/config/config-geteaway.php WebSocketServer/config/config.php`
+**配置文件一键切换网关模式：**`mv config/config.php config/config.php.bak && mv config/config-geteaway.php config/config.php && mv WebSocketServer/config/config.php WebSocketServer/config/config.php.bak && mv WebSocketServer/config/config-geteaway.php WebSocketServer/config/config.php`
 
-注册中心：`vendor/bin/imi-workerman workerman/start --name register`
+**注册中心：**`vendor/bin/imi-workerman workerman/start --name register`
 
-网关：`vendor/bin/imi-workerman workerman/start --name gateway`
+**网关：**`vendor/bin/imi-workerman workerman/start --name gateway`
 
-Swoole Worker：`vendor/bin/imi-swoole swoole/start`
+**Swoole Worker：**`vendor/bin/imi-swoole swoole/start`
 
-Workerman Worker：`vendor/bin/imi-workerman workerman/start --name websocketWorker`
+**Workerman Worker：**`vendor/bin/imi-workerman workerman/start --name websocketWorker`
 
 指定 worker 名称：(多个 worker 实例需要不一样的名字)
 
@@ -372,3 +380,45 @@ IMI_WORKER_NAME=xxx vendor/bin/imi-workerman workerman/start --name xxx
     ],
 ]
 ```
+
+## 生产环境
+
+**关闭热更新：**`config/beans.php` 中 `hotUpdate.status` 设为 `false`
+
+生产环境建议只保留一个容器，可以提升性能，imi 官方推荐使用 **Swoole**！
+
+**移除 `imi-workerman`：**`composer remove imi-workerman`
+
+**移除 `imi-swoole`：**`composer remove imi-swoole`（不推荐）
+
+## 代码质量
+
+### 格式化代码
+
+内置 `php-cs-fixer`，统一代码风格。
+
+配置文件 `.php-cs-fixer.php`，可根据自己实际需要进行配置，文档：<https://github.com/FriendsOfPHP/PHP-CS-Fixer/blob/master/doc/config.rst>
+
+**格式化项目：** `./vendor/bin/php-cs-fixer fix`
+
+**格式化指定文件：** `./vendor/bin/php-cs-fixer fix test.php`
+
+### 代码静态分析
+
+内置 `phpstan`，可规范代码，排查出一些隐藏问题。
+
+配置文件 `phpstan.neon`，可根据自己实际需要进行配置，文档：<https://phpstan.org/config-reference>
+
+**分析项目：** `./vendor/bin/phpstan`
+
+**分析指定文件：** `./vendor/bin/phpstan test.php`
+
+### 测试用例
+
+内置 `phpunit`，可以实现自动化测试。
+
+**文档：**<https://phpunit.readthedocs.io/en/9.5/>
+
+**测试用例 demo：**`tests/Module/Test/TestServiceTest.php`
+
+**运行测试用例：**`composer test`

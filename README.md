@@ -24,6 +24,24 @@ Workerman Http 测试访问地址:<http://127.0.0.1:8080/>、<http://127.0.0.1:8
 
 如果你希望在 Swoole 运行 imi：`composer require imiphp/imi-swoole:~2.1.0`
 
+## 配置
+
+### 项目命名空间
+
+默认是 `ImiApp`，可以在 `composer.json` 中修改：
+
+* `autoload.psr-4.ImiApp`
+
+* `imi.namespace`
+
+然后替换代码中的命名空间即可。
+
+### 运行配置
+
+项目配置目录：`config`
+
+WebSocket 服务器配置目录：`WebSocketServer/config`
+
 ## 启动命令
 
 **普通启动：**

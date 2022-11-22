@@ -4,9 +4,9 @@
     "description": "imi 框架的 WebSocket Server 项目。https://imiphp.com",
     "require": {
         "php": ">=7.4",
-        "imiphp/imi": " ~2.1.0",
-        "imiphp/imi-workerman": " ~2.1.0",
-        "imiphp/imi-workerman-gateway": " ~2.1.0"
+        "imiphp/imi": "2.1.x-dev",
+        "imiphp/imi-workerman": "2.1.x-dev",
+        "imiphp/imi-workerman-gateway": "2.1.x-dev"
     },
     "require-dev": {
         "swoole/ide-helper": "^4.8",
@@ -32,5 +32,8 @@
     },
     "scripts": {
         "test": "@php ./vendor/bin/phpunit -c ./phpunit.xml"
+    },
+    "imi": {
+        "namespace": "ImiApp"
     }
 }

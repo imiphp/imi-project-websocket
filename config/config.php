@@ -9,9 +9,6 @@ use function Imi\env;
 $mode = App::isInited() ? App::getApp()->getType() : null;
 
 return [
-    // 项目根命名空间
-    'namespace'    => 'ImiApp',
-
     // 配置文件
     'configs'    => [
         'beans'        => __DIR__ . '/beans.php',
@@ -238,6 +235,42 @@ return [
     'logger' => [
         'channels' => [
             'imi' => [
+                'handlers' => [
+                    [
+                        'class'     => \Imi\Log\Handler\ConsoleHandler::class,
+                        'construct' => [
+                            'level'  => \Imi\Log\MonoLogger::DEBUG, // 开发调试环境
+                            // 'level'  => \Imi\Log\MonoLogger::INFO,  // 生产环境
+                        ],
+                        'formatter' => [
+                            'class'     => \Imi\Log\Formatter\ConsoleLineFormatter::class,
+                            'construct' => [
+                                'format'                     => null,
+                                'dateFormat'                 => 'Y-m-d H:i:s',
+                                'allowInlineLineBreaks'      => true,
+                                'ignoreEmptyContextAndExtra' => true,
+                            ],
+                        ],
+                    ],
+                    [
+                        'class'     => \Monolog\Handler\RotatingFileHandler::class,
+                        'construct' => [
+                            'level'  => \Imi\Log\MonoLogger::DEBUG, // 开发调试环境
+                            // 'level'  => \Imi\Log\MonoLogger::INFO,  // 生产环境
+                            'filename' => App::get(AppContexts::APP_PATH_PHYSICS) . '/.runtime/logs/log.log',
+                        ],
+                        'formatter' => [
+                            'class'     => \Monolog\Formatter\LineFormatter::class,
+                            'construct' => [
+                                'dateFormat'                 => 'Y-m-d H:i:s',
+                                'allowInlineLineBreaks'      => true,
+                                'ignoreEmptyContextAndExtra' => true,
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'request' => [
                 'handlers' => [
                     [
                         'class'     => \Imi\Log\Handler\ConsoleHandler::class,

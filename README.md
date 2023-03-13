@@ -405,9 +405,9 @@ IMI_WORKER_NAME=xxx vendor/bin/imi-workerman workerman/start --name xxx
 
 生产环境建议只保留一个容器，可以提升性能，imi 官方推荐使用 **Swoole**！
 
-**移除 `imi-workerman`：**`composer remove imi-workerman`
+**移除 `imi-workerman`：**`composer remove imiphp/imi-workerman`
 
-**移除 `imi-swoole`：**`composer remove imi-swoole`（不推荐）
+**移除 `imi-swoole`：**`composer remove imiphp/imi-swoole`（不推荐）
 
 ## 代码质量
 

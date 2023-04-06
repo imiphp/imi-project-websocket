@@ -151,8 +151,10 @@ return [
                 // @phpstan-ignore-next-line
                 'class'        => \Imi\Swoole\Db\Pool\CoroutineDbPool::class,
                 'config'       => [
-                    'maxResources'    => 10,
-                    'minResources'    => 0,
+                    'maxResources'              => 32,
+                    'minResources'              => 0,
+                    'checkStateWhenGetResource' => false,
+                    'heartbeatInterval'         => 60,
                 ],
             ],
             'resource'    => [
@@ -169,14 +171,20 @@ return [
                 // @phpstan-ignore-next-line
                 'class'        => \Imi\Swoole\Redis\Pool\CoroutineRedisPool::class,
                 'config'       => [
-                    'maxResources'    => 10,
-                    'minResources'    => 0,
+                    'maxResources'              => 32,
+                    'minResources'              => 0,
+                    'checkStateWhenGetResource' => false,
+                    'heartbeatInterval'         => 60,
                 ],
             ],
             'resource'    => [
                 'host'      => '127.0.0.1',
                 'port'      => 6379,
                 'password'  => null,
+                'options'   => [
+                    // 使用 RedisServerUtil 时请将注释去除
+                    // \Redis::OPT_READ_TIMEOUT => -1,
+                ],
             ],
         ],
     ],

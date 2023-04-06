@@ -195,6 +195,8 @@ IMI_WORKER_NAME=xxx vendor/bin/imi-workerman workerman/start --name xxx
 ]
 ```
 
+将 `pools.redis.resource.options` 下的 `\Redis::OPT_READ_TIMEOUT` 注释去除。
+
 **WebSocketServer/config/config.php：**
 
 ```php

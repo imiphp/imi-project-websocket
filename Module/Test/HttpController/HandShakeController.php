@@ -15,13 +15,16 @@ use Imi\Server\WebSocket\Route\Annotation\WSConfig;
  * 测试.
  *
  * @Controller
+ *
  * @View(renderType="html")
  */
 class HandShakeController extends HttpController
 {
     /**
      * @Action
+     *
      * @Route("/ws")
+     *
      * @WSConfig(parserClass=\Imi\Server\DataParser\JsonObjectParser::class)
      *
      * @return void

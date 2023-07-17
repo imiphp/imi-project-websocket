@@ -21,9 +21,8 @@ class TestController extends WebSocketController
      * 发送消息.
      *
      * @WSAction
-     * @WSRoute({"action"="send"})
      *
-     * @param mixed $data
+     * @WSRoute({"action"="send"})
      */
     public function send($data): array
     {

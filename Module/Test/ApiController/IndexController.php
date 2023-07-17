@@ -5,15 +5,10 @@ declare(strict_types=1);
 namespace ImiApp\Module\Test\ApiController;
 
 use Imi\Aop\Annotation\Inject;
-use Imi\App;
-use Imi\Db\Db;
-use Imi\Redis\Redis;
 use Imi\Server\Http\Controller\HttpController;
 use Imi\Server\Http\Route\Annotation\Action;
 use Imi\Server\Http\Route\Annotation\Controller;
 use Imi\Server\Http\Route\Annotation\Route;
-use Imi\Server\View\Annotation\HtmlView;
-use Imi\Server\View\Annotation\View;
 use ImiApp\Module\Test\Service\TestService;
 
 /**
@@ -28,6 +23,7 @@ class IndexController extends HttpController
 
     /**
      * @Action
+     *
      * @Route("/")
      *
      * @return array

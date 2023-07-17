@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Imi\App;
 use Imi\AppContexts;
+
 use function Imi\env;
 
 $mode = App::isInited() ? App::getApp()->getType() : null;
